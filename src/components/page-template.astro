@@ -1,0 +1,16 @@
+---
+import Head from "@/components/templates/head.astro"
+import Loading from "@/components/templates/loading.astro"
+import BurgerNav from "@/components/templates/burger-nav.astro"
+import Footer from "@/components/templates/footer.astro"
+---
+
+<html lang="ja">
+  <Head />
+  <body>
+    <Loading />
+    <BurgerNav />
+    <slot />
+    <Footer />
+  </body>
+</html>
