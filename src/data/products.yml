@@ -1,0 +1,24 @@
+- id: 01
+  name: ハンドケア / フットケア
+  price:
+    min: 3000
+
+- id: 02
+  name: ウェディングメニュー
+  price:
+    min: 12000
+
+- id: 03
+  name: ボディトリートメント
+  price:
+    min: 8000
+
+- id: 04
+  name: フェイシャル
+  price:
+    min: 5000
+
+- id: 05
+  name: メイク / セット
+  price:
+    min: 3000

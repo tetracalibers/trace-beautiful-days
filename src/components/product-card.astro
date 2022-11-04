@@ -1,0 +1,57 @@
+---
+import { Product } from "@/types/data"
+
+interface Props {
+  product: Product
+}
+
+const { product } = Astro.props
+
+interface FormatPriceOptions {
+  prefix?: string
+  suffix?: string
+  separator?: string
+}
+
+const formatPrice = (
+  price: Product["price"],
+  options: FormatPriceOptions = {
+    prefix: "",
+    suffix: " yen",
+    separator: "〜",
+  },
+) => {
+  const { min, max, just } = price
+  const { prefix, suffix, separator: s } = options
+
+  const priceStr = (p: number) => `${prefix}${p.toLocaleString()}${suffix}`
+
+  if (just !== undefined) {
+    return priceStr(just)
+  }
+  if (min !== undefined && max !== undefined) {
+    return `${priceStr(min)} ${s} ${priceStr(max)}`
+  }
+  if (min === undefined && max !== undefined) {
+    return `${s} ${priceStr(max)}`
+  }
+  if (min !== undefined && max === undefined) {
+    return `${priceStr(min)} ${s}`
+  }
+  return ""
+}
+---
+
+<section class="fadeInTrigger">
+  <a href="#">
+    <figure class="circle">
+      <span class="mask"
+        ><img src={`/img/products/${product.id}.jpg`} alt="" />
+      </span>
+    </figure>
+    <div class="menu-area">
+      <h3>{product.name}</h3>
+      <p>{formatPrice(product.price)}</p>
+    </div>
+  </a>
+</section>
